@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DefaultebAPI.DataAccess;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DefaultebAPI.Controllers
 {
@@ -17,10 +19,12 @@ namespace DefaultebAPI.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ApplicationDBContext _dBContext;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, ApplicationDBContext dBContext)
         {
             _logger = logger;
+            _dBContext = dBContext;
         }
 
         [Route("getforecast")]
@@ -37,9 +41,18 @@ namespace DefaultebAPI.Controllers
             .ToArray();
         }
 
+        [NonAction]
         public IActionResult Test()
         {
             return Ok("This is a dummy");
+        }
+
+        [Route("getDataById")]
+        [HttpGet("{id}")]
+        public IEnumerable<Standard> StandardData([FromQuery] int id)
+        {
+            var dbData = _dBContext.Standard.Include(c => c.Students).Where(c => c.StandardId == id).ToList();
+            return dbData;
         }
     }
 }
