@@ -46,6 +46,7 @@ namespace DefaultebAPI
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseMiddlewareDemo();
 
             app.UseEndpoints(endpoints =>
             {
