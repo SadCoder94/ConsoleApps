@@ -9,7 +9,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PracticeCode", "PracticeCod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PDFConverter", "PDFConverter\PDFConverter.csproj", "{784E0A55-C9CE-4F35-9FE0-27C94CB7CAE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patterns", "Patterns\Patterns.csproj", "{4313E0C2-3841-469B-9EE2-E88A0DC37A00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Patterns", "Patterns\Patterns.csproj", "{4313E0C2-3841-469B-9EE2-E88A0DC37A00}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseManagement", "ExpenseMnagement\ExpenseManagement.csproj", "{FA9646AF-BBBC-423D-A055-B4A1727446F8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseManagementUnitTest", "ExpenseManagementUnitTest\ExpenseManagementUnitTest.csproj", "{0B70CEA0-0424-49EA-9893-95C6B0DA8245}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterManagement", "WaterManagement\WaterManagement.csproj", "{C56BD0DA-B5F7-4F20-BF22-809F496B9C36}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterManagementUnitTest", "WaterManagementUnitTest\WaterManagementUnitTest.csproj", "{49343A58-1EB1-4C9A-9799-5FFAFEA01FD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portfolio", "Portfolio\Portfolio.csproj", "{A8B0FB55-7962-4916-B68E-AC060C889976}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +43,26 @@ Global
 		{4313E0C2-3841-469B-9EE2-E88A0DC37A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4313E0C2-3841-469B-9EE2-E88A0DC37A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4313E0C2-3841-469B-9EE2-E88A0DC37A00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA9646AF-BBBC-423D-A055-B4A1727446F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA9646AF-BBBC-423D-A055-B4A1727446F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA9646AF-BBBC-423D-A055-B4A1727446F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA9646AF-BBBC-423D-A055-B4A1727446F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B70CEA0-0424-49EA-9893-95C6B0DA8245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B70CEA0-0424-49EA-9893-95C6B0DA8245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B70CEA0-0424-49EA-9893-95C6B0DA8245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B70CEA0-0424-49EA-9893-95C6B0DA8245}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C56BD0DA-B5F7-4F20-BF22-809F496B9C36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C56BD0DA-B5F7-4F20-BF22-809F496B9C36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C56BD0DA-B5F7-4F20-BF22-809F496B9C36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C56BD0DA-B5F7-4F20-BF22-809F496B9C36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49343A58-1EB1-4C9A-9799-5FFAFEA01FD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49343A58-1EB1-4C9A-9799-5FFAFEA01FD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49343A58-1EB1-4C9A-9799-5FFAFEA01FD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49343A58-1EB1-4C9A-9799-5FFAFEA01FD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8B0FB55-7962-4916-B68E-AC060C889976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8B0FB55-7962-4916-B68E-AC060C889976}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8B0FB55-7962-4916-B68E-AC060C889976}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8B0FB55-7962-4916-B68E-AC060C889976}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
