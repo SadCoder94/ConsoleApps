@@ -27,9 +27,9 @@ namespace Portfolio.Classes
                 return null;
         }
 
-        public List<string> GetOverLap(Fund forFund, List<Fund> portfolio)
+        public List<(string, string, double)> GetOverLap(Fund forFund, List<Fund> portfolio)
         {
-            var overlaps = new List<string>();
+            var overlaps = new List<(string, string, double)>();
             foreach (var fund in portfolio)
             {
                 double totalStocks = (double)fund.stocks.Count() + (double)forFund.stocks.Count();
@@ -38,17 +38,15 @@ namespace Portfolio.Classes
 
                 double overLap = ((2 * (double)commonStocks.Count()) / totalStocks) * 100;
 
-                overlaps.Add(forFund.name + " " + fund.name + " " + Math.Round(overLap, 2).ToString() + "%");
+                overlaps.Add((forFund.name, fund.name, Math.Round(overLap, 2)));
             }
 
             return overlaps;
         }
 
-        public void AddStock(string fundName, string stockName)
+        public void AddStock(Fund fund, string stockName)
         {
-            var fund = GetFundInfo(fundName);
-            
-            if(fund != null && stockName != "")
+            if (fund != null && stockName != "")
             {
                 fund.stocks.Add(stockName);
             }

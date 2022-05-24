@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Portfolio": {
+      "commandName": "Project",
+      "commandLineArgs": "D:\\TestInput.txt"
+    },
+    "Profile 1": {
+      "commandName": "Project"
+    }
+  }
+}

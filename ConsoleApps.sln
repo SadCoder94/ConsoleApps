@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31112.23
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelConsoleApp", "ExcelConsoleApp\ExcelConsoleApp.csproj", "{4DE29AB1-806D-4D06-847F-B7962DB6B6A7}"
 EndProject
@@ -19,7 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterManagement", "WaterMan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterManagementUnitTest", "WaterManagementUnitTest\WaterManagementUnitTest.csproj", "{49343A58-1EB1-4C9A-9799-5FFAFEA01FD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portfolio", "Portfolio\Portfolio.csproj", "{A8B0FB55-7962-4916-B68E-AC060C889976}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio", "Portfolio\Portfolio.csproj", "{A8B0FB55-7962-4916-B68E-AC060C889976}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortfolioUnitTest", "PortfolioUnitTest\PortfolioUnitTest.csproj", "{BF1C4A19-2063-4414-A69B-64F6AEA08E1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomCode", "RandomCode\RandomCode.csproj", "{4CCDA133-D69A-4B76-8452-1ECD016C4AC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +67,14 @@ Global
 		{A8B0FB55-7962-4916-B68E-AC060C889976}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8B0FB55-7962-4916-B68E-AC060C889976}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8B0FB55-7962-4916-B68E-AC060C889976}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF1C4A19-2063-4414-A69B-64F6AEA08E1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF1C4A19-2063-4414-A69B-64F6AEA08E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF1C4A19-2063-4414-A69B-64F6AEA08E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF1C4A19-2063-4414-A69B-64F6AEA08E1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CCDA133-D69A-4B76-8452-1ECD016C4AC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CCDA133-D69A-4B76-8452-1ECD016C4AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CCDA133-D69A-4B76-8452-1ECD016C4AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CCDA133-D69A-4B76-8452-1ECD016C4AC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
