@@ -1,50 +1,69 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
-namespace RandomCode
+class GfG
 {
-    public class Program
+    public class Pair: IComparable<Pair>
     {
-        static void Main(string[] args)
-        {
-           Solution solution = new Solution();
-            int[][] matrix = new[] { new[] { 0, 0, 0 },new[] { 0, 1, 0 },new[] { 0, 0, 0 } };
+        public int li { get; set; } 
+        public int di { get; set; } 
+        public int val { get; set; }
 
-             solution.UniquePathsWithObstacles(matrix);
+        public Pair(int li, int di, int val)
+        {
+            this.li = li;
+            this.val = val;
+            this.di = di;
+        }
+
+        public int CompareTo(Pair other)
+        {
+            return this.val - other.val;
         }
     }
-
     public class Solution
     {
-        private (int, int)[] indexes = { (0, 1), (-1, 0) };
-        private int n, m;
-        private int count = 0;
-
-        public int UniquePathsWithObstacles(int[][] obstacleGrid)
+        public static void Main(string[] args)
         {
+            // you can write to stdout for debugging purposes, e.g.
 
-            m = obstacleGrid.Length;
-            n = obstacleGrid[0].Length;
+            var arr = new int[][] { new int[] { 1, 3, 7, 9, 20 }, new int[] { 14, 53, 56, 75, 89 }, new int[] { 16, 59, 89, 800, 950 } };
 
-            DFS(obstacleGrid, 0, 0);
-            return count;
+            var list = Sort(arr);
+
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
         }
 
-        private void DFS(int[][] grid, int i, int j)
+        private static List<int> Sort(int[][] arr)
         {
-            if (i == m - 1 && j == n - 1)
-                count++;
+            PriorityQueue<Pair, int> soLi = new PriorityQueue<Pair, int>();
+            List<int> sorFin = new List<int>();
 
-            foreach (var (pi, pj) in indexes)
+            for (var i=0; i < arr.Length; i++)
             {
-                int ni = i + pi, nj = j + pj;
-                if (ni >= 0 && ni < m && nj >= 0 && nj < n && grid[ni][nj] != 1)
+                Pair pair = new Pair(i, 0, arr[i][0]);
+                soLi.Enqueue(pair, pair.val);
+            }
+
+            while( soLi.Count > 0)
+            {
+                Pair p = soLi.Dequeue();
+                sorFin.Add(p.val);
+                p.di++;
+
+                if (p.di < arr[p.li].Length)
                 {
-                    Console.WriteLine(ni);
-                    DFS(grid, ni, nj);
+                    p.val = arr[p.li][p.di];
+                    soLi.Enqueue(p, p.val);
                 }
             }
 
+            return sorFin;
         }
     }
 }
