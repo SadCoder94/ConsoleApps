@@ -1,10 +1,5 @@
 ﻿using MetroApp.DataRepo;
 using MetroApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MetroApp.Services
 {
@@ -15,9 +10,9 @@ namespace MetroApp.Services
 
     public class CheckInService : ICheckInService
     {
-        readonly ICardService _cardService;
-        readonly IPassengerService _passengerService;
-        private IJourneyInfoRepo _journeyInfoRepo;
+        private readonly ICardService _cardService;
+        private readonly IPassengerService _passengerService;
+        private readonly IJourneyInfoRepo _journeyInfoRepo;
 
         public CheckInService(ICardService cardService, IPassengerService passengerService, IJourneyInfoRepo journeyInfoRepo)
         {

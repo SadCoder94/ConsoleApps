@@ -3,7 +3,6 @@ using MetroApp.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace MetroApp
 {
@@ -46,7 +45,7 @@ namespace MetroApp
             serviceCollection.AddTransient<IStationService, StationService>();
             serviceCollection.AddSingleton<IJourneyInfoRepo, JourneyInfoRepo>();
             serviceCollection.AddSingleton<ICardInfoRepo, CardInfoRepo>();
-            serviceCollection.AddSingleton<IPrintService, PrintService>();
+            serviceCollection.AddTransient<IPrintService, PrintService>();
         }
     }
 }
