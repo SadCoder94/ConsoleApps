@@ -1,4 +1,5 @@
 ﻿using MetroApp.Models;
+using System;
 using System.Collections.Generic;
 
 namespace MetroApp.DataRepo
@@ -24,21 +25,34 @@ namespace MetroApp.DataRepo
             _cards.Add(card);
         }
 
+        private Card GetCardIfExists(string cardNo)
+        {
+            var card = _cards.Find(x => x.CardNumber == cardNo);
+            return card == null ? throw new CardNotFoundException() : card;
+        }
+
         public int GetCardBalanceByCardNumber(string cardNo)
         {
-            return _cards.Find(x => x.CardNumber == cardNo).CardBalance;
+            var card = GetCardIfExists(cardNo);
+            return card.CardBalance;
         }
+
 
         public void AddCardBalance(string cardNo, int amount)
         {
-            var cardToRecharge = _cards.Find(x => x.CardNumber == cardNo);
+            var cardToRecharge = GetCardIfExists(cardNo);
             cardToRecharge.CardBalance += amount;
         }
 
         public void DeductCardBalance(string cardNo, int amount)
         {
-            var cardToRecharge = _cards.Find(x => x.CardNumber == cardNo);
+            var cardToRecharge = GetCardIfExists(cardNo);
             cardToRecharge.CardBalance -= amount;
         }
+    }
+
+    public class CardNotFoundException: Exception
+    {
+
     }
 }

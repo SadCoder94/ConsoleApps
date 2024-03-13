@@ -9,7 +9,7 @@ namespace MetroApp.Models
         public Station station { get; set; }
         public int StationCollection { get; set; }
         public Dictionary<PassengerType, int> passengersOutbound { get; set; }
-        public object TotalDiscount { get; internal set; }
+        public object TotalDiscount { get; set; }
 
         public StationSummary(Station station)
         {

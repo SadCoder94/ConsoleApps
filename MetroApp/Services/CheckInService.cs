@@ -1,5 +1,6 @@
 ﻿using MetroApp.DataRepo;
 using MetroApp.Models;
+using System;
 
 namespace MetroApp.Services
 {
@@ -23,44 +24,52 @@ namespace MetroApp.Services
 
         public CheckInStatus CheckIn(string cardNo, PassengerType passengerType, Station source)
         {
-            var passengerFee = _passengerService.GetpassengerInfoByType(passengerType).PassengerFee;
-            var currentCardAmount = _cardService.GetCardBalanceByCardNumber(cardNo);
-            var discount = 0;
-            var serviceCharge = 0;
-
-            var journey = new JourneyInfo
+            try
             {
-                CardNo = cardNo,
-                StartingStation = source,
-                DestinationStation = source == Station.AIRPORT ? Station.CENTRAL : Station.AIRPORT,
-                PassengerType = passengerType
-            };
+                var passengerFee = _passengerService.GetpassengerFeeByType(passengerType);
+                var currentCardAmount = _cardService.GetCardBalanceByCardNumber(cardNo);
+                var discount = 0;
+                var serviceCharge = 0;
 
-            var isRoundTrip = _journeyInfoRepo.IsRoundtrip(journey);
-            if (isRoundTrip)
-            {
-                discount = passengerFee / 2;
-                passengerFee -= discount;//50% discount on roundtrip
+                var journey = new JourneyInfo
+                {
+                    CardNo = cardNo,
+                    StartingStation = source,
+                    DestinationStation = source == Station.AIRPORT ? Station.CENTRAL : Station.AIRPORT,
+                    PassengerType = passengerType
+                };
+
+                var isRoundTrip = _journeyInfoRepo.IsRoundtrip(journey);
+                if (isRoundTrip)
+                {
+                    discount = passengerFee / 2;
+                    passengerFee -= discount;//50% discount on roundtrip
+                }
+
+                //auto recharge 
+                if (currentCardAmount < passengerFee)
+                {
+                    var amountRecharge = passengerFee - currentCardAmount;
+                    _cardService.AddCardBalance(cardNo, amountRecharge);
+                    serviceCharge = (int)(amountRecharge * 0.02);
+                }
+
+                //deduct charges from card
+                _cardService.DeductCardBalance(cardNo, passengerFee);
+
+                journey.Charges = passengerFee;
+                journey.Discount = discount;
+                journey.ServiceCharges = serviceCharge;
+
+                _journeyInfoRepo.AddJourney(journey);
+
+                return CheckInStatus.CHECKED_IN;
             }
-
-            //auto recharge 
-            if (currentCardAmount < passengerFee)
+            catch (CardNotFoundException)
             {
-                var amountRecharge = passengerFee - currentCardAmount;
-                _cardService.AddCardBalance(cardNo, amountRecharge);
-                serviceCharge = (int)(amountRecharge * 0.02);
+                Console.WriteLine("Card number not found");
+                return CheckInStatus.ERROR_IN_CHECKIN;
             }
-
-            //deduct charges from card
-            _cardService.DeductCardBalance(cardNo, passengerFee);
-
-            journey.Charges = passengerFee;
-            journey.Discount = discount;
-            journey.ServiceCharges = serviceCharge;
-
-            _journeyInfoRepo.AddJourney(journey);
-
-            return CheckInStatus.CHECKED_IN;
         }
     }
 

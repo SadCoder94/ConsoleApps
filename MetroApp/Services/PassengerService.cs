@@ -6,7 +6,7 @@ namespace MetroApp.Services
 {
     public interface IPassengerService
     {
-        Passenger GetpassengerInfoByType(PassengerType passengerType);
+        int GetpassengerFeeByType(PassengerType passengerType);
     }
 
     public class PassengerService : IPassengerService
@@ -22,9 +22,9 @@ namespace MetroApp.Services
 
         }
 
-        public Passenger GetpassengerInfoByType(PassengerType passengerType)
+        public int GetpassengerFeeByType(PassengerType passengerType)
         {
-            return _passengers.FirstOrDefault(x => x.PassengerType == passengerType);
+            return _passengers.FirstOrDefault(x => x.PassengerType == passengerType).PassengerFee;
         }
     }
 }

@@ -7,12 +7,12 @@ using Xunit;
 
 namespace MetroAppUnitTests
 {
-    public class CardServiceTests
+    public class CardServiceUnitTests
     {
         private Mock<ICardInfoRepo> _mockCardRepo;
         private CardService _cardService;
             
-        public CardServiceTests()
+        public CardServiceUnitTests()
         {
             _mockCardRepo = new Mock<ICardInfoRepo>();
             _cardService = new CardService(_mockCardRepo.Object);

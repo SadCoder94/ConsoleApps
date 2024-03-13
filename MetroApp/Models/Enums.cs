@@ -9,7 +9,8 @@
     public enum CheckInStatus
     {
         CHECKED_IN,
-        LOW_CARD_BALANCE_RECHARGE
+        LOW_CARD_BALANCE_RECHARGE,
+        ERROR_IN_CHECKIN
     }
     public enum PassengerType
     {
