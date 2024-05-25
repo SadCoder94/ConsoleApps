@@ -6,10 +6,10 @@ namespace MetroApp.DataRepo
 {
     public interface ICardInfoRepo
     {
-        void AddCardBalance(string cardNo, int amount);
-        void DeductCardBalance(string cardNo, int amount);
+        Card AddCardBalance(string cardNo, int amount);
+        Card DeductCardBalance(string cardNo, int amount);
         int GetCardBalanceByCardNumber(string cardNo);
-        void LoadCardInfo(Card card);
+        Card LoadCardInfo(Card card);
     }
 
     public class CardInfoRepo : ICardInfoRepo
@@ -20,9 +20,10 @@ namespace MetroApp.DataRepo
             _cards = new List<Card>();
         }
 
-        public void LoadCardInfo(Card card)
+        public Card LoadCardInfo(Card card)
         {
             _cards.Add(card);
+            return card;
         }
 
         private Card GetCardIfExists(string cardNo)
@@ -38,16 +39,18 @@ namespace MetroApp.DataRepo
         }
 
 
-        public void AddCardBalance(string cardNo, int amount)
+        public Card AddCardBalance(string cardNo, int amount)
         {
             var cardToRecharge = GetCardIfExists(cardNo);
             cardToRecharge.CardBalance += amount;
+            return cardToRecharge;
         }
 
-        public void DeductCardBalance(string cardNo, int amount)
+        public Card DeductCardBalance(string cardNo, int amount)
         {
-            var cardToRecharge = GetCardIfExists(cardNo);
-            cardToRecharge.CardBalance -= amount;
+            var cardInfo = GetCardIfExists(cardNo);
+            cardInfo.CardBalance -= amount;
+            return cardInfo;
         }
     }
 

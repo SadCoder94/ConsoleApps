@@ -19,7 +19,7 @@ namespace MetroApp.Services
         public void PrintSummary(Station station)
         {
             var centralStationCollection = _stationService.GetStationSummary(station);
-            Console.WriteLine($"TOTAL_COLLECTION CENTRAL {centralStationCollection.StationCollection} {centralStationCollection.TotalDiscount}");
+            Console.WriteLine($"TOTAL_COLLECTION {station} {centralStationCollection.StationCollection} {centralStationCollection.TotalDiscount}");
             Console.WriteLine($"PASSENGER_TYPE_SUMMARY");
 
             var stationPassengerSummary = centralStationCollection.passengersOutbound;

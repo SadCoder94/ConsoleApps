@@ -6,9 +6,9 @@ namespace MetroApp.Services
     public interface ICardService
     {
         int GetCardBalanceByCardNumber(string cardNo);
-        void SetCardInfo(string cardNo, int balance);
-        void AddCardBalance(string cardNo, int amount);
-        void DeductCardBalance(string cardNo, int amount);
+        Card SetCardInfo(string cardNo, int balance);
+        Card AddCardBalance(string cardNo, int amount);
+        Card DeductCardBalance(string cardNo, int amount);
     }
 
     public class CardService : ICardService
@@ -24,19 +24,24 @@ namespace MetroApp.Services
             return _cardInfoRepo.GetCardBalanceByCardNumber(cardNo);
         }
 
-        public void SetCardInfo(string cardNo, int balance)
+        public Card SetCardInfo(string cardNo, int balance)
         {
-            _cardInfoRepo.LoadCardInfo(new Card { CardNumber = cardNo, CardBalance = balance });
+            var cardInfo = new Card { CardNumber = cardNo, CardBalance = balance };
+            _cardInfoRepo.LoadCardInfo(cardInfo);
+
+            return cardInfo;
         }
 
-        public void AddCardBalance(string cardNo, int amount)
+        public Card AddCardBalance(string cardNo, int amount)
         {
-            _cardInfoRepo.AddCardBalance(cardNo, amount);
+            var cardInfo = _cardInfoRepo.AddCardBalance(cardNo, amount);
+            return cardInfo;
         }
 
-        public void DeductCardBalance(string cardNo, int amount)
+        public Card DeductCardBalance(string cardNo, int amount)
         {
-            _cardInfoRepo.DeductCardBalance(cardNo, amount);
+            var cardInfo = _cardInfoRepo.DeductCardBalance(cardNo, amount);
+            return cardInfo;
         }
     }
 }
