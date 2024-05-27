@@ -114,6 +114,26 @@ namespace RideSharingUnitTests
         }
 
         [Fact]
+        public void StartRideIfRideIfNoDriversAvailable()
+        {
+            //setup
+            mockUserService.Setup(d => d.GetUserById("ID1")).Returns(
+                new User { UserId = "ID1", UserType = UserTypeEnum.RIDER, xCoord = 0, yCoord = 0 }
+                );
+
+            var driversList = new List<User>();
+
+            mockUserService.Setup(d => d.GetDriversInRange(0, 0, 5)).Returns(driversList);
+            mockAppDataRepo.Setup(x => x.GetRideById("R1")).Returns((Ride)null);
+
+            //execute
+            var response = rideService.StartRide("R1", 3, "ID1");
+
+            //
+            Assert.Equal(RideStatus.INVALID, response);
+        }
+
+        [Fact]
         public void StopRideIfRideAlreadyExists()
         {
             //setup
@@ -126,6 +146,21 @@ namespace RideSharingUnitTests
             //assert
             Assert.Equal(RideStatus.STOPPED, response);
             mockAppDataRepo.Verify(x => x.UpdateRideDetails(It.IsAny<Ride>()), Times.Once);
+        }
+
+        [Fact]
+        public void StopRideIfRideAlreadyEnded()
+        {
+            //setup
+            mockUserService.Setup(d => d.GetUserById("ID1")).Returns(new User { UserId = "ID1", UserType = UserTypeEnum.RIDER, xCoord = 0, yCoord = 0 });
+            mockAppDataRepo.Setup(x => x.GetRideById("R1")).Returns(new Ride { RideId = "R1", StartX = 0, StartY = 0, DriverId = "DR1", RiderId = "ID1", Amount = 231, StopX = 9, StopY = 9 });
+
+            //execute
+            var response = rideService.StopRide("R1", 9, 9, 10);
+
+            //assert
+            Assert.Equal(RideStatus.INVALID, response);
+            mockAppDataRepo.Verify(x => x.UpdateRideDetails(It.IsAny<Ride>()), Times.Never);
         }
 
         [Fact]

@@ -43,6 +43,9 @@ namespace RideSharing.Services
                 return RideStatus.INVALID;
 
             var getDriversinRadiusofUser = FindMatches(riderID);
+            if (!getDriversinRadiusofUser.Any())
+                return RideStatus.INVALID;
+            
             var getNthDriver = getDriversinRadiusofUser[N-1];
 
             var rideAdd = _appDataRepo.AddRide(new Ride { RideId = rideId, RiderId = riderID, DriverId = getNthDriver});
@@ -53,7 +56,7 @@ namespace RideSharing.Services
         public RideStatus StopRide(string rideId, int destX, int destY, int timeTakenInMin)
         {
             var rideInfo = _appDataRepo.GetRideById(rideId);
-            if (rideInfo == null)
+            if (rideInfo == null || rideInfo.RideIsComplete())
                 return RideStatus.INVALID;
 
             var riderInfo = _userService.GetUserById(rideInfo.RiderId);

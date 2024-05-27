@@ -37,7 +37,7 @@ namespace RideSharing.Services
                 return;
             }
 
-            Console.WriteLine($"BILL {rideId} {rideInfo.DriverId} {rideInfo.Amount}");
+            Console.WriteLine($"BILL {rideId} {rideInfo.DriverId} {rideInfo.Amount:0.00}");
 
         }
 
