@@ -62,14 +62,16 @@ namespace RideSharingUnitTests
                 new User { UserId = "ID4", UserType = UserTypeEnum.DRIVER, xCoord = 4, yCoord = 4 }
             };
             mockDataRepo.Setup(x => x.GetUserByType(UserTypeEnum.DRIVER)).Returns(driversList);
+            mockDataRepo.Setup(x => x.IsDriverInRide("ID2")).Returns(true);
 
             //execute
             var response = userService.GetDriversInRange(0, 0);
             
             //assert
-            Assert.Equal(2, response.Count);//only 2 drivers are in range from the list above
+            Assert.Single(response);//only 1 drivers are in range as 1 is beyond range and the other is in a ride 
 
         }
+
 
     }
 }
