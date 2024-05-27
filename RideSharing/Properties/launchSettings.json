@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RideSharing": {
+      "commandName": "Project",
+      "commandLineArgs": "D:/TestInput.txt"
+    }
+  }
+}
