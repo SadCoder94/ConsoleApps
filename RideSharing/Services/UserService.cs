@@ -43,9 +43,13 @@ namespace RideSharing.Services
                 
             foreach(var driver in allDrivers)
             {
-                var distanceFromRider = CalculationMethods.GetEucledianDistance(xCoord,yCoord,driver.xCoord,driver.yCoord);
-                if(distanceFromRider <= 5)
-                    driversInRange.Add(new { driver, distanceFromRider });
+                if (!_dataRepo.IsDriverInRide(driver.UserId))
+                {
+                    var distanceFromRider = CalculationMethods.GetEucledianDistance(xCoord, yCoord, driver.xCoord, driver.yCoord);
+
+                    if (distanceFromRider <= 5)
+                        driversInRange.Add(new { driver, distanceFromRider });
+                }
             }
 
             var driversInDescendingOrder = driversInRange.Cast<dynamic>().OrderBy(x => x.distanceFromRider).ThenBy(x => x.driver.UserId).Select(x => x.driver).Cast<User>();
