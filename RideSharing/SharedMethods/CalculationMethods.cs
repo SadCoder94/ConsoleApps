@@ -7,19 +7,24 @@ namespace RideSharing.SharedMethods
     {
         public static double GetEucledianDistance(int x1, int y1, int x2, int y2)
         {
-            var dist = Math.Abs(Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2)));
-            return Math.Round(dist,2);
+            var dist = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
+            return Math.Round(dist,2, MidpointRounding.AwayFromZero);
+            //return dist;
         }
 
         public static double CalculateRideAmount(int time,double distance)
         {
-            var amount = 50.0 //base fare
-                         + 6.5 * distance //6.5 per kilometer
-                         + 2 * time; //2 per minute in ride
+            double baseFare = 50;
+            double perKilometerCharge = 6.5;
+            double perMinuteCharge = 2;
 
-            amount += 0.2 * amount;// 20% service charge
+            double totalAmount = baseFare + (perKilometerCharge * distance) + (perMinuteCharge * time);
+            double serviceCharge = 0.2 * totalAmount; // 20% of the fare
 
-            return Math.Round(amount, 2);
+            totalAmount += serviceCharge;
+
+            Console.WriteLine($"T-{time} D-{distance} A-{totalAmount}");
+            return totalAmount;
         }
     }
 }

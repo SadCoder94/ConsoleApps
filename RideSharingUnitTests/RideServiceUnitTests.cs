@@ -138,6 +138,7 @@ namespace RideSharingUnitTests
         {
             //setup
             mockUserService.Setup(d => d.GetUserById("ID1")).Returns(new User { UserId = "ID1", UserType = UserTypeEnum.RIDER, xCoord = 0, yCoord = 0 });
+            mockUserService.Setup(d => d.GetUserById("DR1")).Returns(new User { UserId = "DR1", UserType = UserTypeEnum.DRIVER, xCoord = 4, yCoord = 1 });
             mockAppDataRepo.Setup(x => x.GetRideById("R1")).Returns(new Ride { RideId = "R1", StartX = 0, StartY = 0, DriverId = "DR1", RiderId = "ID1" });
 
             //execute
