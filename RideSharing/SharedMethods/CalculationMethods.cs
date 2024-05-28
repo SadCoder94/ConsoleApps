@@ -22,8 +22,7 @@ namespace RideSharing.SharedMethods
             double serviceCharge = 0.2 * totalAmount; // 20% of the fare
 
             totalAmount += serviceCharge;
-
-            Console.WriteLine($"T-{time} D-{distance} A-{totalAmount}");
+            
             return totalAmount;
         }
     }
