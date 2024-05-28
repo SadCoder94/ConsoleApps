@@ -60,16 +60,21 @@ namespace RideSharing.Services
                 return RideStatus.INVALID;
 
             var riderInfo = _userService.GetUserById(rideInfo.RiderId);
+            var driverInfo = _userService.GetUserById(rideInfo.DriverId);
 
-            var distanceTravelled = CalculationMethods.GetEucledianDistance(riderInfo.xCoord,riderInfo.yCoord, destX, destY);
-
-            var amount = CalculationMethods.CalculateRideAmount(timeTakenInMin, distanceTravelled);
-
-            rideInfo.Amount = amount;
+            rideInfo.Amount = CalculationMethods.CalculateRideAmount(timeTakenInMin, CalculationMethods.GetEucledianDistance(riderInfo.xCoord, riderInfo.yCoord, destX, destY));
             rideInfo.StopX = destX;
             rideInfo.StopY = destY;
-            
+
+            //update the coords of both driver and rider 
+            driverInfo.xCoord = destX;
+            driverInfo.yCoord = destY;
+            riderInfo.xCoord = destX;
+            riderInfo.yCoord = destY;
+
             _appDataRepo.UpdateRideDetails(rideInfo);
+            _appDataRepo.UpdateUser(driverInfo);
+            _appDataRepo.UpdateUser(riderInfo);
 
             return RideStatus.STOPPED;
         }

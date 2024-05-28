@@ -12,6 +12,8 @@ namespace RideSharing.Services
         void AddUser(UserTypeEnum userType, string userId, int xCoord, int yCoord);
         List<User> GetDriversInRange(int xCoord, int yCoord, int? upto=null);
         User GetUserById(string userId);
+
+        void UpdateUser(User user);
     }
 
     public class UserService : IUserService
@@ -64,6 +66,11 @@ namespace RideSharing.Services
         {
             var user = _dataRepo.GetUserById(userId);
             return user;
+        }
+
+        public void UpdateUser(User user)
+        {
+            _dataRepo.UpdateUser(user);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace RideSharing.DataRepo
         List<User> GetUserByType(UserTypeEnum driver);
         bool IsDriverInRide(string driverId);
         void UpdateRideDetails(Ride ride);
+        void UpdateUser(User user);
     }
     public class AppDataRepo : IAppDataRepo
     {
@@ -52,6 +53,21 @@ namespace RideSharing.DataRepo
         {
             var rideByDriver = Rides.Where(x => x.DriverId == driverId && !x.RideIsComplete()).ToList();
             return rideByDriver.Any();
+        }
+
+        public void UpdateUser(User user)
+        {
+            var userInList = UserList.FirstOrDefault(x => x.UserId == user.UserId);
+
+            if(userInList != null)
+            {
+                var indexOfUser = UserList.IndexOf(userInList);
+                if (indexOfUser != -1)
+                {
+                    UserList[indexOfUser] = user;
+                }
+
+            }
         }
     }
 }
